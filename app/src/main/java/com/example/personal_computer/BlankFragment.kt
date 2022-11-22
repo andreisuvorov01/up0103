@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.FragmentTransaction
 import com.example.personal_computer.databinding.ActivityMainBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +36,19 @@ class BlankFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_blank, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val mat : Button = view.findViewById(R.id.button_moth)
+        mat.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_mother_board)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, motherBoard.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+        super.onViewCreated(view, savedInstanceState)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

@@ -1,18 +1,13 @@
 package com.example.personal_computer
 
-import android.content.Context
-import android.content.res.Resources.Theme
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.RadioButton
-import androidx.annotation.Nullable
-import com.example.personal_computer.databinding.ActivityMainBinding.inflate
+import android.widget.RadioGroup
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 
@@ -41,8 +36,23 @@ class setting : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val root:ViewGroup = inflater.inflate(R.layout.fragment_setting, null)
-        val lightRadioButton : RadioButton = activity().findViewById(R.id.light_theme)
+        val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
+        val lightRadioButton: RadioButton = view.findViewById(R.id.light_theme)
+        val nightRadioButton: RadioButton = view.findViewById(R.id.night_theme)
+        val bundle = Bundle()
+        radioGroup.setOnCheckedChangeListener{ _, checkedId ->
+            when (checkedId){
+                R.id.light_theme ->{
+                    val bundle = Bundle()
+                    bundle.putInt("theme",1)
+                }
+                R.id.night_theme->{
+                    val bundle = Bundle()
+                    bundle.putInt("theme",2)
+                }
+            }
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
  

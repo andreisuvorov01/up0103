@@ -4,4 +4,6 @@
         android:title="Домой"/>
     <item android:id="@+id/info"
         android:title="О программе"/>
+    <item android:id="@+id/smenaTemu"
+        android:title="Смена темы"/>
 </menu>

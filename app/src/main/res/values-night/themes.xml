@@ -1,13 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Personal_computer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Personal_computer_night" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#424269</item>
-        <item name="colorPrimaryVariant">#62629C</item>
+        <item name="colorPrimaryVariant">#424269</item>
         <item name="colorOnPrimary">#21201b</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">#424269</item>
+        <item name="colorSecondaryVariant">#424269</item>
         <item name="colorOnSecondary">#21201b</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
