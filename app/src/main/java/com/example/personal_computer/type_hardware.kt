@@ -5,16 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
+import androidx.fragment.app.activityViewModels
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [type_hardware.newInstance] factory method to
- * create an instance of this fragment.
- */
 class type_hardware : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -34,17 +27,32 @@ class type_hardware : Fragment() {
         return inflater.inflate(R.layout.fragment_type_hardware, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lateinit var dataModels: ArrayList<dataModel>
+        lateinit var listView: ListView
+        lateinit var adapter: CustomAdapter
+        val ViewModels : ViewModel1 by activityViewModels()
+        val name : String? = ViewModels.name?.value.toString()
+        val cena : String? = ViewModels.cena?.value.toString()
+        val spec : String? = ViewModels.Spec?.value.toString()
+        val img : Int? = ViewModels.img.value?.toInt()
+        listView = view.findViewById<View>(R.id.spisok_pokupok) as ListView
+        dataModels = ArrayList()
+        if ((name != null) && (cena != null) && (spec != null) && (img != null)) {
+            dataModels.add(
+                dataModel(
+                    img,
+                    name,
+                    cena,
+                    spec
+                )
+            )
+        }
+        adapter = CustomAdapter(dataModels!!, requireActivity().application)
+        listView.adapter = adapter
+        super.onViewCreated(view, savedInstanceState)
+    }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment type_hardware.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance() =
             type_hardware().apply {
                 arguments = Bundle().apply {

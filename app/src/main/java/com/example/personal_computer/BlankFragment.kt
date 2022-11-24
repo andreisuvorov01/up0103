@@ -37,7 +37,12 @@ class BlankFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val mat : Button = view.findViewById(R.id.button_moth)
+        val mat: Button = view.findViewById(R.id.button_moth)
+        val proc: Button = view.findViewById(R.id.button_proc)
+        val hard : Button = view.findViewById(R.id.hard_btn)
+        val mem: Button = view.findViewById(R.id.memory_btn)
+        val video: Button = view.findViewById(R.id.videocard_btn)
+        val casef: Button = view.findViewById(R.id.case_btn)
         mat.setOnClickListener {
             val fragment: Fragment = Fragment(R.layout.fragment_mother_board)
             if (fragment != null) {
@@ -47,19 +52,56 @@ class BlankFragment : Fragment() {
                 transaction?.commit()
             }
         }
+        proc.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_processor)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, processor.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+
+        }
+        hard.setOnClickListener{
+            val fragment: Fragment = Fragment(R.layout.fragment_hard_drive)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, hard_drive.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+        mem.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_memory)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, memory.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+        video.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_hard_drive)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, videocard.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+        casef.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_case_frag)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, case_frag.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance() =
             BlankFragment().apply {
                 arguments = Bundle().apply {

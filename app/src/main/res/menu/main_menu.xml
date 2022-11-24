@@ -4,6 +4,12 @@
         android:title="Домой"/>
     <item android:id="@+id/info"
         android:title="О программе"/>
-    <item android:id="@+id/smenaTemu"
-        android:title="Смена темы"/>
+    <item android:title="тема">
+        <menu>
+            <item android:title="Тёмная"
+                android:id="@+id/darkTheme"/>
+            <item android:title="Светлая"
+                android:id="@+id/lightTheme"/>
+        </menu>
+    </item>
 </menu>

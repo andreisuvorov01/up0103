@@ -9,6 +9,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.personal_computer.databinding.ActivityMainBinding
@@ -18,11 +23,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val dataModels : ViewModel1 by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Personal_computer)
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dataModels.name.observe(this,{})
+        dataModels.cena.observe(this,{})
+        dataModels.Spec.observe(this,{})
+        dataModels.img.observe(this,{})
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supportFragmentManager.beginTransaction()
             .replace(R.id.placeholder1, BlankFragment.newInstance()).commit()
@@ -64,11 +75,11 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.placeholder1, fragment_info.newInstance()).commit()
             }
-            R.id.smenaTemu ->{
-                var i : Int = 1
-                if (i % 2 == 0){ setTheme(R.style.Theme_Personal_computer)}
-                else setTheme(R.style.Theme_Personal_computer_night)
-                i++
+            R.id.darkTheme ->{
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+            }
+            R.id.lightTheme ->{
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
             }
         }
         return super.onOptionsItemSelected(item)

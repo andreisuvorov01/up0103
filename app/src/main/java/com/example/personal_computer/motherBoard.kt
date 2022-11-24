@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
@@ -29,6 +31,16 @@ class motherBoard : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val buy: Button = view.findViewById(R.id.button_pokupka)
+        buy.setOnClickListener {
+            val fragment: Fragment = Fragment(R.layout.fragment_mother_board)
+            if (fragment != null) {
+                val transaction: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+                transaction?.replace(R.id.placeholder1, pokupka_motherBoard.newInstance())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
     }
     companion object {
